@@ -1,0 +1,1115 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     42785,       1105]
+NotebookOptionsPosition[     39865,       1044]
+NotebookOutlinePosition[     40263,       1060]
+CellTagsIndexPosition[     40220,       1057]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Veronese : Calcula os pontos da Veronese V^{n} _ {d} .", "Item",
+ CellChangeTimes->{{3.884360242951803*^9, 
+  3.884360257266205*^9}},ExpressionUUID->"35e95250-0b8f-4e2e-9ca9-\
+91583ad66d24"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Veronese", "[", 
+    RowBox[{"n_", ",", "d_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"permu", ",", "saida", ",", "i"}], "}"}], ",", " ", 
+     RowBox[{"(*", 
+      RowBox[{"permu", ":", " ", 
+       RowBox[{"todos", " ", "os", " ", "pontos", " ", "em", " ", 
+        RowBox[{"Z", "^", "n"}], " ", "com", " ", "valor", " ", "at\[EAcute]",
+         " ", "d", " ", "em", " ", "cada", " ", "coordenada", " ", 
+        RowBox[{"(", 
+         RowBox[{"importando", " ", "a", " ", "ordem"}], ")"}]}]}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"saida", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"permu", "=", 
+       RowBox[{"Tuples", "[", 
+        RowBox[{
+         RowBox[{"Range", "[", 
+          RowBox[{"0", ",", "d"}], "]"}], ",", "n"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "<=", 
+         RowBox[{"Length", "[", "permu", "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Sum", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"permu", "[", 
+                RowBox[{"[", "i", "]"}], "]"}], "[", 
+               RowBox[{"[", "h", "]"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"h", ",", "1", ",", "n"}], "}"}]}], "]"}], "<=", "d"}],
+            ",", 
+           RowBox[{
+            RowBox[{"saida", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"saida", ",", 
+               RowBox[{"permu", "[", 
+                RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], ";"}]}], "]"}], 
+         ";"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      "saida"}]}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.8843602902058268`*^9},
+ CellLabel->"In[2]:=",ExpressionUUID->"b23ea155-f4c2-49d9-8272-4aca1003658a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+SegreVeronese : Calcula os pontos da Segre - Veronese SV^{n_ 1, ..., n_r} _ \
+{d_ 1, ..., d_r} .\
+\>", "Item",
+ CellChangeTimes->{{3.884360325474061*^9, 
+  3.884360328170951*^9}},ExpressionUUID->"f28e9ae1-9250-46a6-b4e4-\
+f6e1ccb895af"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"SegreVeronese", "[", 
+    RowBox[{"n_", ",", "d_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"saida", ",", "j"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"saida", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"Not", "[", 
+         RowBox[{
+          RowBox[{"Length", "[", "n", "]"}], "==", 
+          RowBox[{"Length", "[", "d", "]"}]}], "]"}], ",", 
+        RowBox[{
+         RowBox[{"saida", "=", "\"\<Falta informacao\>\""}], ";"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"saida", "=", 
+          RowBox[{"Veronese", "[", 
+           RowBox[{
+            RowBox[{"n", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ",", 
+            RowBox[{"d", "[", 
+             RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"j", "=", "2"}], ",", 
+           RowBox[{"j", "<=", 
+            RowBox[{"Length", "[", "n", "]"}]}], ",", 
+           RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"saida", "=", 
+             RowBox[{"Flatten", "[", 
+              RowBox[{
+               RowBox[{"Table", "[", 
+                RowBox[{
+                 RowBox[{"Table", "[", 
+                  RowBox[{
+                   RowBox[{"Flatten", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"saida", "[", 
+                    RowBox[{"[", "p", "]"}], "]"}], ",", 
+                    RowBox[{
+                    RowBox[{"Veronese", "[", 
+                    RowBox[{
+                    RowBox[{"n", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], ",", 
+                    RowBox[{"d", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], "]"}], "[", 
+                    RowBox[{"[", "h", "]"}], "]"}]}], "}"}], ",", "1"}], 
+                    "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"h", ",", "1", ",", 
+                    RowBox[{"Length", "[", 
+                    RowBox[{"Veronese", "[", 
+                    RowBox[{
+                    RowBox[{"n", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], ",", 
+                    RowBox[{"d", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], "]"}], "]"}]}], "}"}]}],
+                   "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"p", ",", "1", ",", 
+                   RowBox[{"Length", "[", "saida", "]"}]}], "}"}]}], "]"}], 
+               ",", "1"}], "]"}]}], ";"}]}], "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+            "Faz", " ", "o", " ", "\"\<cartesiano\>\"", " ", "d\[AAcute]", 
+             " ", "Segre"}], "-", 
+            RowBox[{"Veronese", " ", "em", " ", 
+             RowBox[{"P", "^", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"n_", "1"}], ",", "...", ",", 
+                RowBox[{"n_j", "-", "1"}]}], "}"}]}], " ", "com", " ", "a", 
+             " ", "Veronese", " ", "em", " ", 
+             RowBox[{"P", "^", 
+              RowBox[{"{", "j", "}"}]}]}]}], "*)"}], "\[IndentingNewLine]", 
+          "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", "saida"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{3.8843603612391925`*^9},
+ CellLabel->"In[3]:=",ExpressionUUID->"71a6f9a7-dfb1-4287-b357-ceb6c336e04b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+MaioresPts : mostra os pontos de maior peso em rela\[CCedilla]\[ATilde]o a \
+dire\[CCedilla]\[ATilde]o \"v\" .\
+\>", "Item",
+ CellChangeTimes->{{3.8843604011341114`*^9, 
+  3.8843604048773212`*^9}},ExpressionUUID->"6269a40f-1ddc-47cc-9196-\
+00b36f199407"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"MaioresPts", "[", 
+    RowBox[{"p_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"i", ",", "saida", ",", "inter"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"saida", "=", 
+       RowBox[{"{", 
+        RowBox[{"p", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"inter", "=", 
+       RowBox[{"p", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "2"}], ",", 
+        RowBox[{"i", "<=", 
+         RowBox[{"Length", "[", "p", "]"}]}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"inter", ".", "v"}], ">", 
+            RowBox[{
+             RowBox[{"p", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], ".", "v"}]}], ",", " ", ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"inter", ".", "v"}], "==", 
+               RowBox[{
+                RowBox[{"p", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], ".", "v"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"saida", "=", 
+                RowBox[{"Append", "[", 
+                 RowBox[{"saida", ",", 
+                  RowBox[{"p", "[", 
+                   RowBox[{"[", "i", "]"}], "]"}]}], "]"}]}], ";"}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"saida", "=", 
+                RowBox[{"{", 
+                 RowBox[{"p", "[", 
+                  RowBox[{"[", "i", "]"}], "]"}], "}"}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"inter", "=", 
+                RowBox[{"p", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}]}], ";"}]}], 
+             "\[IndentingNewLine]", " ", "]"}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}],
+       ";", "saida"}]}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.8843604274456635`*^9},
+ CellLabel->"In[4]:=",ExpressionUUID->"e22866c7-c611-476b-a1c8-882b9701d2fb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+ESimplexo : verifica se dados x pontos em Z^n formam um simplexo .\
+\>", "Item",
+ CellChangeTimes->{{3.884360450539875*^9, 
+  3.8843604536811976`*^9}},ExpressionUUID->"8cab8db0-586b-4780-88e9-\
+9fb899a927bb"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ESimplexo", "[", "p_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"matriz", ",", "i", ",", "saida"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"saida", "=", "False"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"Length", "[", 
+           RowBox[{"p", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}], "+", "1"}], "==", 
+         RowBox[{"Length", "[", "p", "]"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"matriz", "=", 
+          RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"i", "=", "2"}], ",", 
+           RowBox[{"i", "<=", 
+            RowBox[{"Length", "[", "p", "]"}]}], ",", 
+           RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"matriz", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"matriz", ",", 
+               RowBox[{
+                RowBox[{"p", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "-", 
+                RowBox[{"p", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}]}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"MatrixRank", "[", "matriz", "]"}], "==", 
+            RowBox[{"Length", "[", 
+             RowBox[{"p", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"saida", "=", "True"}], ";"}]}], "\[IndentingNewLine]", 
+          "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", "saida"}]}], "\[IndentingNewLine]", "]"}]}], ";"}
+  ]], "Input",
+ CellChangeTimes->{3.8843604768710527`*^9},
+ CellLabel->"In[5]:=",ExpressionUUID->"95dbd327-20a8-462d-8b6c-6d6fcc1dd994"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Trivialmente : verifica se \"v\" separa trivialmente um simplexo na cole\
+\[CCedilla]\[ATilde]o de pontos \"p\" em Z^n .\
+\>", "Item",
+ CellChangeTimes->{{3.8843604972003107`*^9, 
+  3.884360501489191*^9}},ExpressionUUID->"b22ff641-97c5-4d89-998a-\
+0978de8322b3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Trivialmente", "[", 
+    RowBox[{"p_", ",", "v_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "n", ",", "saida", ",", "pord", ",", "i", ",", "j", ",", "peso", ",", 
+       "pparcial"}], "}"}], ",", " ", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"n", ":", " ", 
+         RowBox[{"dimens\[ATilde]o", " ", "do", " ", "espa\[CCedilla]o"}]}], 
+        ";", " ", 
+        RowBox[{"saida", ":", " ", 
+         RowBox[{"saida", " ", "do", " ", "programa"}]}], ";", " ", 
+        RowBox[{"pparcial", ":", " ", 
+         RowBox[{
+         "guarda", " ", "os", " ", "pontos", " ", "que", " ", "n\[ATilde]o", 
+          " ", "foram", " ", "ordenados", " ", "ainda"}]}], ";", " ", 
+        RowBox[{"pparcial", ":", " ", 
+         RowBox[{
+         "os", " ", "pontos", " ", "de", " ", "maior", " ", "peso", " ", "em",
+           " ", "\"\<a\>\""}]}], ";", " ", 
+        RowBox[{"pord", ":", " ", 
+         RowBox[{
+         "guarda", " ", "os", " ", "pontos", " ", "\"\<p\>\"", " ", "de", " ",
+           "forma", " ", "decrescente", " ", "em", " ", 
+          "rela\[CCedilla]\[ATilde]o", " ", "a", " ", "\"\<v\>\""}]}], ";", 
+        " ", "i"}], ",", 
+       RowBox[{"j", ":", " ", 
+        RowBox[{"Para", " ", "o", " ", "For"}]}]}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"n", "=", 
+       RowBox[{"Length", "[", 
+        RowBox[{"p", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"pord", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"pparcial", "=", "p"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"saida", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "p", "]"}], "<", 
+         RowBox[{"n", "+", "1"}]}], ",", " ", 
+        RowBox[{"saida", "=", "False"}], ",", " ", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", "p", "]"}], "==", 
+            RowBox[{"n", "+", "1"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"ESimplexo", "[", "p", "]"}], ",", " ", 
+              RowBox[{
+               RowBox[{"saida", "=", "p"}], ";"}], ",", " ", 
+              RowBox[{
+               RowBox[{"saida", "=", " ", "False"}], ";"}]}], "]"}], ";"}], 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"For", "[", 
+             RowBox[{
+              RowBox[{"i", "=", "1"}], ",", 
+              RowBox[{"i", "<=", 
+               RowBox[{"Length", "[", "p", "]"}]}], ",", 
+              RowBox[{"i", "=", 
+               RowBox[{"i", "+", 
+                RowBox[{"Length", "[", "peso", "]"}]}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"peso", "=", 
+                RowBox[{"MaioresPts", "[", 
+                 RowBox[{"pparcial", ",", "v"}], "]"}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"For", "[", 
+                RowBox[{
+                 RowBox[{"j", "=", "1"}], ",", 
+                 RowBox[{"j", "<=", 
+                  RowBox[{"Length", "[", "peso", "]"}]}], ",", 
+                 RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"pord", "=", 
+                   RowBox[{"Append", "[", 
+                    RowBox[{"pord", ",", 
+                    RowBox[{"peso", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"pparcial", "=", 
+                   RowBox[{"DeleteCases", "[", 
+                    RowBox[{"pparcial", ",", 
+                    RowBox[{"peso", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], "]"}]}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+             "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"saida", "=", 
+             RowBox[{"Table", "[", 
+              RowBox[{
+               RowBox[{"pord", "[", 
+                RowBox[{"[", "h", "]"}], "]"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"h", ",", "1", ",", 
+                 RowBox[{"n", "+", "1"}]}], "}"}]}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"ESimplexo", "[", "saida", "]"}], "&&", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"pord", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"n", "+", "2"}], "]"}], "]"}], ".", "v"}], "<", 
+                RowBox[{
+                 RowBox[{"saida", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"n", "+", "1"}], "]"}], "]"}], ".", "v"}]}]}], ",",
+               ",", " ", 
+              RowBox[{
+               RowBox[{"saida", "=", "False"}], ";"}]}], "]"}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";"}]}], "]"}], ";", 
+      "\[IndentingNewLine]", "saida"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{3.884360527126929*^9},
+ CellLabel->"In[6]:=",ExpressionUUID->"d65dde49-4b86-4ddd-947f-2b1256be70e9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+RandomSimplexo : Dado um conjunto de pontos p em Z^n, a fun\[CCedilla]\
+\[ATilde]o vai tentar (o n\[UAcute]mero de \"tentativa\") separar \
+trivialmente um simplexo .\
+\>", "Item",
+ CellChangeTimes->{{3.8843605598986435`*^9, 
+  3.884360562194977*^9}},ExpressionUUID->"32e32e6f-2f9a-4d20-ae28-\
+b90b90f54198"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"RandomSimplexo", "[", 
+    RowBox[{"p_", ",", 
+     RowBox[{"tentativa_", ":", "Infinity"}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"saida", ",", "i", ",", "v"}], "}"}], ",", " ", 
+     RowBox[{"(*", 
+      RowBox[{"v", ":", " ", 
+       RowBox[{"Vetor", " ", "aleat\[OAcute]rio", " ", "em", " ", 
+        RowBox[{"Z", "^", 
+         RowBox[{"{", 
+          RowBox[{"Length", "[", 
+           RowBox[{"p", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], "]"}], "}"}]}]}]}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"saida", "=", "False"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "<=", "tentativa"}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"v", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"RandomReal", "[", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "1"}], ",", "1"}], "}"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"h", ",", "1", ",", 
+              RowBox[{"Length", "[", 
+               RowBox[{"p", "[", 
+                RowBox[{"[", "1", "]"}], "]"}], "]"}]}], "}"}]}], "]"}]}], 
+         ";", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", 
+             RowBox[{"Trivialmente", "[", 
+              RowBox[{"p", ",", "v"}], "]"}], "]"}], "==", 
+            RowBox[{
+             RowBox[{"Length", "[", 
+              RowBox[{"p", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "]"}], "+", "1"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"saida", "=", 
+             RowBox[{"Trivialmente", "[", 
+              RowBox[{"p", ",", "v"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"Break", "[", "]"}], ";"}]}], "\[IndentingNewLine]", 
+          "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", "saida"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{3.8843605875603256`*^9},
+ CellLabel->"In[7]:=",ExpressionUUID->"716bde72-e745-457a-82ce-cb7f0473a597"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Eindependente : Verifica se um conjunto de pontos p s\[ATilde]o independentes \
+em Z^n .\
+\>", "Item",
+ CellChangeTimes->{{3.8843606051854086`*^9, 
+  3.8843606076740737`*^9}},ExpressionUUID->"d8f3c336-d123-46ec-a566-\
+97d0256addf6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"EIndependente", "[", "p_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"matriz", ",", "i", ",", "saida"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"saida", "=", "False"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "p", "]"}], "==", "1"}], ",", 
+        RowBox[{
+         RowBox[{"saida", "=", "True"}], ";"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"Length", "[", 
+              RowBox[{"p", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "]"}], "+", "1"}], ">", 
+            RowBox[{"Length", "[", "p", "]"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"matriz", "=", 
+             RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+            "\[IndentingNewLine]", 
+            RowBox[{"For", "[", 
+             RowBox[{
+              RowBox[{"i", "=", "2"}], ",", 
+              RowBox[{"i", "<=", 
+               RowBox[{"Length", "[", "p", "]"}]}], ",", 
+              RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"matriz", "=", 
+                RowBox[{"Append", "[", 
+                 RowBox[{"matriz", ",", 
+                  RowBox[{
+                   RowBox[{"p", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                   RowBox[{"p", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}]}], ";"}]}], 
+             "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"MatrixRank", "[", "matriz", "]"}], "==", 
+               RowBox[{
+                RowBox[{"Length", "[", "p", "]"}], "-", "1"}]}], ",", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"saida", "=", "True"}], ";"}]}], "\[IndentingNewLine]",
+              "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", "saida"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.8843606297474127`*^9},
+ CellLabel->"In[8]:=",ExpressionUUID->"ce51e15f-bb75-4a39-96fe-4cbe57caf430"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+EDimensaoCheia : verifica se um conjunto p de pontos geram todo o espa\
+\[CCedilla]o Z^n .\
+\>", "Item",
+ CellChangeTimes->{{3.8843606463094096`*^9, 
+  3.8843606485943136`*^9}},ExpressionUUID->"3084ae60-e0ab-43c0-a4b9-\
+4a10b425ed8e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"EDimensaoCheia", "[", "p_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"matriz", ",", "i", ",", "saida"}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"saida", "=", "False"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"matriz", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"Not", "[", 
+         RowBox[{
+          RowBox[{"Length", "[", "p", "]"}], "==", "0"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", "p", "]"}], ">=", 
+            RowBox[{
+             RowBox[{"Length", "[", 
+              RowBox[{"p", "[", 
+               RowBox[{"[", "1", "]"}], "]"}], "]"}], "+", "1"}]}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"For", "[", 
+             RowBox[{
+              RowBox[{"i", "=", "2"}], ",", 
+              RowBox[{"i", "<=", 
+               RowBox[{"Length", "[", "p", "]"}]}], ",", 
+              RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"matriz", "=", 
+                RowBox[{"Append", "[", 
+                 RowBox[{"matriz", ",", 
+                  RowBox[{
+                   RowBox[{"p", "[", 
+                    RowBox[{"[", "i", "]"}], "]"}], "-", 
+                   RowBox[{"p", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}]}]}], "]"}]}], ";"}]}], 
+             "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"MatrixRank", "[", "matriz", "]"}], "==", 
+               RowBox[{"Length", "[", 
+                RowBox[{"p", "[", 
+                 RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ",", 
+              RowBox[{
+               RowBox[{"saida", "=", "True"}], ";"}]}], "]"}], ";"}]}], 
+          "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", "]"}],
+       ";", "\[IndentingNewLine]", "saida"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.88436068583848*^9},
+ CellLabel->"In[9]:=",ExpressionUUID->"569f5918-66dd-47d0-8131-aff9a6a38658"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+SeparaSimplexo : Dado um conjunto de pontos p em Z^n, a fun\[CCedilla]\
+\[ATilde]o vai tentar separar simplexos .\
+\>", "Item",
+ CellChangeTimes->{{3.884360702303918*^9, 
+  3.8843607053959923`*^9}},ExpressionUUID->"f979aeb3-b741-4cc8-a047-\
+2c9a084ddae8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"SeparaSimplexo", "[", 
+    RowBox[{"p_", ",", 
+     RowBox[{"tentativa_", ":", "Infinity"}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "pparcial", ",", "simplexo", ",", "sparcial", ",", "resto", ",", 
+       "saida"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"resto", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"simplexo", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"pparcial", "=", "p"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{"True", ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"Not", "[", 
+            RowBox[{"EDimensaoCheia", "[", "pparcial", "]"}], "]"}], ",", 
+           RowBox[{
+            RowBox[{"resto", "=", "pparcial"}], ";", " ", 
+            RowBox[{"Break", "[", "]"}], ";"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"sparcial", "=", 
+             RowBox[{"RandomSimplexo", "[", 
+              RowBox[{"pparcial", ",", "tentativa"}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"simplexo", "=", 
+             RowBox[{"Append", "[", 
+              RowBox[{"simplexo", ",", "sparcial"}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"pparcial", "=", 
+             RowBox[{"Intersection", "[", 
+              RowBox[{"pparcial", ",", 
+               RowBox[{"Complement", "[", 
+                RowBox[{"pparcial", ",", "sparcial"}], "]"}]}], "]"}]}], 
+            ";"}]}], "\[IndentingNewLine]", "]"}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Length", "[", "resto", "]"}], "==", "0"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"saida", "=", 
+          RowBox[{"{", "simplexo", "}"}]}], ";"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"saida", "=", 
+          RowBox[{"{", "simplexo", "}"}]}], ";", "\[IndentingNewLine]", 
+         RowBox[{"saida", "=", 
+          RowBox[{"Append", "[", 
+           RowBox[{"saida", ",", "resto"}], "]"}]}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", "saida"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.8843607324432983`*^9},
+ CellLabel->"In[10]:=",ExpressionUUID->"7b5a751c-684f-47e6-8812-4c66bf672238"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Defeituosa : Dado uma segre - veronese p, a fun\[CCedilla]\[ATilde]o vai \
+tentar verificar se n\[ATilde]o \[EAcute] defeituosa, caso n\[ATilde]o \
+consiga, a fun\[CCedilla]\[ATilde]o mostrar que n\[ATilde]o \[EAcute] h - \
+defeituosa .\
+\>", "Item",
+ CellChangeTimes->{{3.884360754576316*^9, 
+  3.8843607562820663`*^9}},ExpressionUUID->"a0e46d90-a2b8-40d0-81ba-\
+05f3e66eb495"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Defeituosa", "[", 
+    RowBox[{"p_", ",", 
+     RowBox[{"tentativa_", ":", "Infinity"}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"i", ",", "separasimplexo", ",", "VF", ",", "resto", ",", "h"}],
+       "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"resto", "=", "0"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"i", "=", "1"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"VF", "=", "False"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Not", "[", "VF", "]"}], "&&", " ", 
+         RowBox[{"i", "<=", "tentativa"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"separasimplexo", "=", 
+          RowBox[{"SeparaSimplexo", "[", "p", "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", "separasimplexo", "]"}], "==", "1"}], ",", 
+           RowBox[{
+            RowBox[{"VF", "=", "True"}], ";"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"i", "==", "1"}], ",", 
+              RowBox[{
+               RowBox[{"resto", "=", 
+                RowBox[{"Length", "[", 
+                 RowBox[{"separasimplexo", "[", 
+                  RowBox[{"[", "2", "]"}], "]"}], "]"}]}], ";", 
+               RowBox[{"h", "=", 
+                RowBox[{"Length", "[", 
+                 RowBox[{"separasimplexo", "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";"}]}], "]"}], 
+            ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"EIndependente", "[", 
+               RowBox[{"separasimplexo", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"VF", "=", "True"}], ";"}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Length", "[", 
+                   RowBox[{"separasimplexo", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}], "<", "resto"}], 
+                 ",", " ", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"resto", "=", 
+                   RowBox[{"Length", "[", 
+                    RowBox[{"separasimplexo", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"h", "=", 
+                   RowBox[{"Length", "[", 
+                    RowBox[{"separasimplexo", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+             "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"i", "++"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"VF", ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{"\"\<Nao e defeituosa \>\"", ",", "separasimplexo"}], "]"}],
+          ";"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"Print", "[", 
+          RowBox[{
+          "\"\<Falhou, mas nao e \>\"", ",", " ", "h", ",", " ", 
+           "\"\<-defeituosa\>\""}], "]"}], ";"}]}], "\[IndentingNewLine]", 
+       "]"}], ";"}]}], "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.8843607847187843`*^9},
+ CellLabel->"In[11]:=",ExpressionUUID->"cea9fff6-bd23-4c2e-a963-a89cab68d1ed"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+NaoEDefeituosa : Dado uma segre - veronese p, a fun\[CCedilla]\[ATilde]o vai \
+tentar verificar se n\[ATilde]o \[EAcute] defeituosa (True), caso n\[ATilde]o \
+consiga, a fun\[CCedilla]\[ATilde]o mostrar False .\
+\>", "Item",
+ CellChangeTimes->{{3.884360805094205*^9, 
+  3.884360807395147*^9}},ExpressionUUID->"be4cf799-d274-48d4-8325-\
+a13d4e9fedde"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"NaoEDefeituosa", "[", 
+    RowBox[{"p_", ",", "tentativa_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "i", ",", "separasimplexo", ",", "VF", ",", "resto", ",", "h", ",", 
+       "saida"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"resto", "=", "0"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"i", "=", "1"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"VF", "=", "False"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"While", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Not", "[", "VF", "]"}], "&&", " ", 
+         RowBox[{"i", "<=", "tentativa"}]}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"separasimplexo", "=", 
+          RowBox[{"SeparaSimplexo", "[", "p", "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", "separasimplexo", "]"}], "==", "1"}], ",", 
+           RowBox[{
+            RowBox[{"VF", "=", "True"}], ";"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"i", "==", "1"}], ",", 
+              RowBox[{
+               RowBox[{"resto", "=", 
+                RowBox[{"Length", "[", 
+                 RowBox[{"separasimplexo", "[", 
+                  RowBox[{"[", "2", "]"}], "]"}], "]"}]}], ";", 
+               RowBox[{"h", "=", 
+                RowBox[{"Length", "[", 
+                 RowBox[{"separasimplexo", "[", 
+                  RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";"}]}], "]"}], 
+            ";", "\[IndentingNewLine]", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"EIndependente", "[", 
+               RowBox[{"separasimplexo", "[", 
+                RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{"VF", "=", "True"}], ";"}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"Length", "[", 
+                   RowBox[{"separasimplexo", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}], "<", "resto"}], 
+                 ",", " ", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"resto", "=", 
+                   RowBox[{"Length", "[", 
+                    RowBox[{"separasimplexo", "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}]}], ";", 
+                  "\[IndentingNewLine]", 
+                  RowBox[{"h", "=", 
+                   RowBox[{"Length", "[", 
+                    RowBox[{"separasimplexo", "[", 
+                    RowBox[{"[", "1", "]"}], "]"}], "]"}]}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+             "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"i", "++"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"VF", ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"saida", "=", "True"}], ";"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"saida", "=", "False"}], ";"}]}], "\[IndentingNewLine]", 
+       "]"}], ";", "\[IndentingNewLine]", "saida"}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.8843608316080914`*^9},
+ CellLabel->"In[12]:=",ExpressionUUID->"82836ca2-3a7f-440c-ae77-19a3fac25ee8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+QNDefeituosas : Dada uma lista L de Segre - Veronese, a fun\[CCedilla]\
+\[ATilde]o mostra apenas as que conseguiu \"ver\" que n\[ATilde]o \[EAcute] \
+defeituosa .\
+\>", "Item",
+ CellChangeTimes->{{3.8843608459016714`*^9, 
+  3.8843608478879223`*^9}},ExpressionUUID->"2234f926-4ac0-4918-8ddd-\
+0b724ad29387"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"QNDefeituosas", "[", 
+    RowBox[{"L_", ",", "tentativa_"}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"saida", ",", "Lparcial", ",", "i", ",", "j", ",", "SV"}], 
+      "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Lparcial", "=", "L"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"saida", "=", 
+       RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "<=", "tentativa"}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Length", "[", "Lparcial", "]"}], "==", "0"}], ",", 
+           RowBox[{
+            RowBox[{"Break", "[", "]"}], ";"}], ",", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"For", "[", 
+             RowBox[{
+              RowBox[{"j", "=", "1"}], ",", 
+              RowBox[{"j", "<=", 
+               RowBox[{"Length", "[", "Lparcial", "]"}]}], ",", 
+              RowBox[{"j", "++"}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"SV", "=", 
+                RowBox[{"SegreVeronese", "[", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Lparcial", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], ",", 
+                  RowBox[{
+                   RowBox[{"Lparcial", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}], "[", 
+                   RowBox[{"[", "2", "]"}], "]"}]}], "]"}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"NaoEDefeituosa", "[", 
+                  RowBox[{"SV", ",", "i"}], "]"}], ",", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"saida", "=", 
+                   RowBox[{"Append", "[", 
+                    RowBox[{"saida", ",", 
+                    RowBox[{"Lparcial", "[", 
+                    RowBox[{"[", "j", "]"}], "]"}]}], "]"}]}], ";"}]}], 
+                "\[IndentingNewLine]", "]"}], ";"}]}], "\[IndentingNewLine]", 
+             "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Lparcial", "=", 
+          RowBox[{"Intersection", "[", 
+           RowBox[{"Lparcial", ",", 
+            RowBox[{"Complement", "[", 
+             RowBox[{"Lparcial", ",", "saida"}], "]"}]}], "]"}]}], ";"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", "saida"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{3.884360868437112*^9},
+ CellLabel->"In[13]:=",ExpressionUUID->"b07bf899-ede1-4f68-b60f-dbd11de139a0"]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (July 9, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"0d1edfc0-f34f-48af-9653-deb65b96b655"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 196, 3, 32, "Item",ExpressionUUID->"35e95250-0b8f-4e2e-9ca9-91583ad66d24"],
+Cell[779, 27, 2106, 54, 234, "Input",ExpressionUUID->"b23ea155-f4c2-49d9-8272-4aca1003658a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2922, 86, 246, 6, 32, "Item",ExpressionUUID->"f28e9ae1-9250-46a6-b4e4-f6e1ccb895af"],
+Cell[3171, 94, 3664, 91, 294, "Input",ExpressionUUID->"71a6f9a7-dfb1-4287-b357-ceb6c336e04b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6872, 190, 264, 6, 32, "Item",ExpressionUUID->"6269a40f-1ddc-47cc-9196-00b36f199407"],
+Cell[7139, 198, 2375, 62, 350, "Input",ExpressionUUID->"e22866c7-c611-476b-a1c8-882b9701d2fb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9551, 265, 218, 5, 32, "Item",ExpressionUUID->"8cab8db0-586b-4780-88e9-9fb899a927bb"],
+Cell[9772, 272, 2075, 53, 402, "Input",ExpressionUUID->"95dbd327-20a8-462d-8b6c-6d6fcc1dd994"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11884, 330, 272, 6, 32, "Item",ExpressionUUID->"b22ff641-97c5-4d89-998a-0978de8322b3"],
+Cell[12159, 338, 5427, 131, 626, "Input",ExpressionUUID->"d65dde49-4b86-4ddd-947f-2b1256be70e9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17623, 474, 318, 7, 32, "Item",ExpressionUUID->"32e32e6f-2f9a-4d20-ae28-b90b90f54198"],
+Cell[17944, 483, 2323, 60, 326, "Input",ExpressionUUID->"716bde72-e745-457a-82ce-cb7f0473a597"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20304, 548, 242, 6, 32, "Item",ExpressionUUID->"d8f3c336-d123-46ec-a566-97d0256addf6"],
+Cell[20549, 556, 2427, 59, 458, "Input",ExpressionUUID->"ce51e15f-bb75-4a39-96fe-4cbe57caf430"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23013, 620, 244, 6, 32, "Item",ExpressionUUID->"3084ae60-e0ab-43c0-a4b9-4a10b425ed8e"],
+Cell[23260, 628, 2344, 59, 382, "Input",ExpressionUUID->"569f5918-66dd-47d0-8131-aff9a6a38658"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25641, 692, 265, 6, 32, "Item",ExpressionUUID->"f979aeb3-b741-4cc8-a047-2c9a084ddae8"],
+Cell[25909, 700, 2567, 61, 482, "Input",ExpressionUUID->"7b5a751c-684f-47e6-8812-4c66bf672238"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28513, 766, 388, 8, 32, "Item",ExpressionUUID->"a0e46d90-a2b8-40d0-81ba-05f3e66eb495"],
+Cell[28904, 776, 3746, 87, 642, "Input",ExpressionUUID->"cea9fff6-bd23-4c2e-a963-a89cab68d1ed"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32687, 868, 360, 7, 32, "Item",ExpressionUUID->"be4cf799-d274-48d4-8325-a13d4e9fedde"],
+Cell[33050, 877, 3578, 83, 662, "Input",ExpressionUUID->"82836ca2-3a7f-440c-ae77-19a3fac25ee8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36665, 965, 316, 7, 32, "Item",ExpressionUUID->"2234f926-4ac0-4918-8ddd-0b724ad29387"],
+Cell[36984, 974, 2865, 67, 442, "Input",ExpressionUUID->"b07bf899-ede1-4f68-b60f-dbd11de139a0"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
